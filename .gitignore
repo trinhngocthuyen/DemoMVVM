@@ -1,0 +1,50 @@
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+
+## Other
+*.xccheckout
+*.moved-aside
+*.xcuserstate
+
+## Obj-C/Swift specific
+*.hmap
+*.ipa
+
+## Cocoapods: cocoapods.org
+# 
+# Ignoring these files means that whoever uses the code will first have to run:
+# pod install
+# in the App.xcodeproj directory.
+# This ensures the latest dependencies are used.
+# Pods/
+
+## Carthage
+#
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+
+Carthage/Build
+
+## OS X temporary files that should never be committed
+
+.DS_Store
+*.swp
+
+# XcodeInjections
+iOSInjectionProject/

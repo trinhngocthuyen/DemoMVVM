@@ -9,44 +9,41 @@
 import UIKit
 import SnapKit
 
-class SecondViewController: UIViewController {
-    private struct Identifier {
-        static let EventItemCell = "EventItemCell"
-        static let FeedbackCell = "FeedbackCell"
-    }
+class SecondViewController: SharedViewController {
     
-    private let tableView: UITableView = {
-        let tableView = UITableView()
-        return tableView
-    }()
+    // MARK: - Data
+    private var viewModel = EventsViewModel(fetchDataTask: FetchDataTask())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
-        setupLayout()
-    }
-    
-    func setupView() {
-        view.backgroundColor = UIColor.whiteColor()
-        view.addSubview(tableView)
-        
         tableView.dataSource = self
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 60
-        tableView.registerClass(EventItemTableViewCell.self, forCellReuseIdentifier: Identifier.EventItemCell)
-        tableView.registerClass(FeedbackTableViewCell.self, forCellReuseIdentifier: Identifier.FeedbackCell)
+        tableView.delegate = self
+        
+        setupRAC()
     }
     
-    func setupLayout() {
-        tableView.snp_remakeConstraints { (make) -> Void in
-            make.top.equalTo(self.view.snp_top).offset(64)
-            make.left.equalTo(self.view.snp_left)
-            make.right.equalTo(self.view.snp_right)
-            make.bottom.equalTo(self.view.snp_bottom)
-        }
+    private func setupRAC() {
+        // Fetch from local & fetch from server
+        viewModel.fetchDataFromLocal().takeUntilReplacement(viewModel.fetchDataFromServer())
+            .on(next: { _ in
+                self.tableView.reloadData()
+            })
+            .on(failed: { error in
+                NSLog("Error: \(error.description)")
+            })
+            .start()
+        
+        // Animate loading more based on the state of isLoadingMore
+        viewModel.isLoadingMore.producer
+            .on(next: self.animateLoadingMore )
+            .start()
     }
     
+    func injected() {
+        NSLog("Injected from SecondViewController")
+        
+    }
 }
 
 extension SecondViewController: UITableViewDataSource {
@@ -56,20 +53,62 @@ extension SecondViewController: UITableViewDataSource {
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 30
+        return viewModel.numberOfDataItems()
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.EventItemCell) as! EventItemTableViewCell
-        
-        let fakeModel = FakeModel()
-        
-        cell.name = fakeModel.generateEventName()
-        cell.time = fakeModel.generateEventTime()
-        
-        cell.layoutIfNeeded()
-        
-        return cell
+        let dataItem = viewModel.dataItemAtIndex(indexPath.row)
+        switch dataItem {
+        case .EventItem(let event):
+            let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.EventItemCell) as! EventItemTableViewCell
+            configureCell(cell, withEvent: event)
+            return cell
+            
+        case .FeedbackItem:
+            let cell = tableView.dequeueReusableCellWithIdentifier(Identifier.FeedbackCell) as! FeedbackTableViewCell
+            configureCell(cell)
+            return cell
+        }
     }
     
+    private func configureCell(cell: EventItemTableViewCell, withEvent event: Event) {
+        cell.name = event.name
+        cell.time = event.startDate
+        cell.layoutIfNeeded()
+    }
+    
+    private func configureCell(cell: FeedbackTableViewCell) {
+        cell.delegate = self
+        cell.layoutIfNeeded()
+    }
+    
+}
+
+extension SecondViewController: UITableViewDelegate {
+    
+    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+        if(tableView.contentOffset.y >= (tableView.contentSize.height - tableView.frame.size.height)) {
+            viewModel.fetchMoreData()
+                .on(next: { newEvents in
+                    self.tableView.reloadData()
+                    if !newEvents.isEmpty {
+                        self.moveALittleUpper()
+                    }
+                })
+                .start()
+        }
+    }
+}
+
+extension SecondViewController: FeedbackTableViewCellDelegate {
+    
+    func feedbackCell(cell: FeedbackTableViewCell, didChooseOption option: FeedbackOption) {
+        collapseFeedbackCell()
+    }
+    
+    private func collapseFeedbackCell() {
+        viewModel.shouldShowFeedbackCell = false
+        let indexPath = NSIndexPath(forRow: Constants.FeedbackIndex, inSection: 0)
+        tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Top)
+    }
 }

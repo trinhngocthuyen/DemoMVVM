@@ -65,7 +65,7 @@ class FeedbackTableViewCell: UITableViewCell {
     }
     
     private func setupView() {
-        backgroundColor = UIColor(hex: 0x6bc8c6)
+        backgroundColor = UIColor(hex: 0x6BC8C6)
         addSubview(headerLabel)
         addSubview(yesButton)
         addSubview(noButton)

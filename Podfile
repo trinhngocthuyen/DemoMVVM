@@ -7,6 +7,6 @@ target 'DemoMVVM' do
 end
 
 target 'DemoMVVMTests' do
-
+    pod 'Nimble', '3.2.0'
 end
 

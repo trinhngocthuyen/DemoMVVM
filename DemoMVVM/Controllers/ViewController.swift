@@ -24,7 +24,8 @@ class ViewController: UIViewController {
         
         vcCreators = [
             (title: "MVC Implementation", { FirstViewController() }),
-            (title: "MVVM Implementation", { SecondViewController() })]
+            (title: "MVVM Implementation", { SecondViewController() })
+        ]
     }
     
     func setupView() {
@@ -63,6 +64,7 @@ extension ViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let vc = vcCreators[indexPath.row].vc()
+        vc.title = vcCreators[indexPath.row].title
         navigationController?.pushViewController(vc, animated: true)
     }
 }

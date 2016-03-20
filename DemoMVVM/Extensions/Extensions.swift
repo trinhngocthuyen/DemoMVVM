@@ -8,6 +8,31 @@
 
 import UIKit
 
+/// Extensions
+// >>> (then)
+infix operator >>> { associativity left }
+func >>> <A, B, C>(f: A -> B, g: B -> C) -> A -> C {
+    return { x in g(f(x)) }
+}
+
+func >>> <A, B, C>(f: A -> B?, g: B -> C) -> A -> C? {
+    return { x in
+        if let y = f(x) {
+            return g(y)
+        }
+        return nil
+    }
+}
+
+func >>> <A, B, C>(f: A -> B?, g: B -> C?) -> A -> C? {
+    return { x in
+        if let y = f(x) {
+            return g(y)
+        }
+        return nil
+    }
+}
+
 extension NSDate {
     func toStringWithFormat(format: String) -> String {
         let formatter = NSDateFormatter()

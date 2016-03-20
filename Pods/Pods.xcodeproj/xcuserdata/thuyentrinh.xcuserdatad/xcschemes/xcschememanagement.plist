@@ -4,7 +4,17 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Nimble.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-DemoMVVM.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-DemoMVVMTests.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,6 +37,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>ACD2319BA6C0A5F9453A7DFDED558369</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>C59923B7E9C727B1BC9A2927FF4AFA89</key>
 		<dict>
 			<key>primary</key>
@@ -43,6 +58,11 @@
 			<true/>
 		</dict>
 		<key>F0CF94204E7C6AAF43D277D40D53BB11</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>FF61C7C740C1B196A3B33F37B77DBC68</key>
 		<dict>
 			<key>primary</key>
 			<true/>

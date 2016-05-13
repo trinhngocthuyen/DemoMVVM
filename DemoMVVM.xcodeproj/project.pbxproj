@@ -10,7 +10,6 @@
 		0C5826EF1C99B136003C44C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5826EE1C99B136003C44C1 /* ViewController.swift */; };
 		0C5826F21C99B136003C44C1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0C5826F01C99B136003C44C1 /* Main.storyboard */; };
 		0C5826F41C99B136003C44C1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0C5826F31C99B136003C44C1 /* Assets.xcassets */; };
-		0C5827021C99B136003C44C1 /* DemoMVVMTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5827011C99B136003C44C1 /* DemoMVVMTests.swift */; };
 		0C5827111C99B2D7003C44C1 /* EventsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5827101C99B2D7003C44C1 /* EventsViewModel.swift */; };
 		0C5827131C99B306003C44C1 /* EventItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5827121C99B306003C44C1 /* EventItemTableViewCell.swift */; };
 		0C5827151C99B337003C44C1 /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C5827141C99B337003C44C1 /* Event.swift */; };
@@ -45,7 +44,6 @@
 		0C5826F31C99B136003C44C1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0C5826F81C99B136003C44C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C5826FD1C99B136003C44C1 /* DemoMVVMTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DemoMVVMTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		0C5827011C99B136003C44C1 /* DemoMVVMTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoMVVMTests.swift; sourceTree = "<group>"; };
 		0C5827031C99B136003C44C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0C5827101C99B2D7003C44C1 /* EventsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventsViewModel.swift; sourceTree = "<group>"; };
 		0C5827121C99B306003C44C1 /* EventItemTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EventItemTableViewCell.swift; sourceTree = "<group>"; };
@@ -128,7 +126,6 @@
 		0C5827001C99B136003C44C1 /* DemoMVVMTests */ = {
 			isa = PBXGroup;
 			children = (
-				0C5827011C99B136003C44C1 /* DemoMVVMTests.swift */,
 				0CADFA921C9E992600042DBE /* EventsViewModelTests.swift */,
 				0C5827031C99B136003C44C1 /* Info.plist */,
 			);
@@ -436,7 +433,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0C5827021C99B136003C44C1 /* DemoMVVMTests.swift in Sources */,
 				0CADFA931C9E992600042DBE /* EventsViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

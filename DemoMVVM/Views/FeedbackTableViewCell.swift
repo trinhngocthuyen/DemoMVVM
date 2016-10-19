@@ -70,8 +70,8 @@ class FeedbackTableViewCell: UITableViewCell {
         addSubview(yesButton)
         addSubview(noButton)
         
-        yesButton.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
-        noButton.addTarget(self, action: "tapButton:", forControlEvents: .TouchUpInside)
+        yesButton.addTarget(self, action: #selector(FeedbackTableViewCell.tapButton(_:)), forControlEvents: .TouchUpInside)
+        noButton.addTarget(self, action: #selector(FeedbackTableViewCell.tapButton(_:)), forControlEvents: .TouchUpInside)
     }
     
     private func setupLayout() {

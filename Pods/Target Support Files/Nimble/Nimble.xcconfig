@@ -6,3 +6,4 @@ OTHER_LDFLAGS = -weak-lswiftXCTest -weak_framework "XCTest"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_ROOT = ${SRCROOT}
 SKIP_INSTALL = YES
+SWIFT_VERSION = 2.3
